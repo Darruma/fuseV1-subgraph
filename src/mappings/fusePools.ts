@@ -59,11 +59,11 @@ export function updatePool(
 
   pool.name = contract._name
   pool.comptroller = contract._address
-  pool.creator = contract.admin()
-  pool.closeFactor = contract.closeFactorMantissa()
-  pool.liquidationIncentive = contract.liquidationIncentiveMantissa()
-  pool.priceOracle = contract.oracle()
-  pool.maxAssets = contract.maxAssets()
+  pool.creator = contract.try_admin()
+  pool.closeFactor = contract.try_closeFactorMantissa()
+  pool.liquidationIncentive = contract.try_liquidationIncentiveMantissa()
+  pool.priceOracle = contract.try_oracle()
+  pool.maxAssets = contract.try_maxAssets()
 
   pool.markets = getAllMarketsInPool(contract)
 
