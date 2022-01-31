@@ -10,12 +10,9 @@ import {
   NewCloseFactor,
   NewCollateralFactor,
   NewLiquidationIncentive,
-  NewBorrowCap, // not implemented
-  NewBorrowCapGuardian, // not implemented
-  NewPauseGuardian, // not implemented
   NewPriceOracle,
   MarketListed
-} from '../types/Comptroller/Comptroller'
+} from '../types/templates/Comptroller/Comptroller'
 import { CToken } from '../types/templates'
 import { Comptroller } from '../types/templates/Comptroller/Comptroller'
 import { Market, Account, Pool, Admin } from '../types/schema'

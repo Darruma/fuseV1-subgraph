@@ -21,7 +21,7 @@ import {
   convertMantissaToAPR,
   fixed36
 } from './helpers'
-import { MarketListed } from '../types/Comptroller/Comptroller'
+import { MarketListed } from '../types/templates/Comptroller/Comptroller'
 
 let cUSDCAddress = '0x39aa39c021dfbae8fac545936693ac917d5e7563'
 let cETHAddress = '0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5'

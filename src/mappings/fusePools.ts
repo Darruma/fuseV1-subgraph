@@ -1,4 +1,4 @@
-import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts'
+import { Address, BigInt, Bytes, ethereum } from '@graphprotocol/graph-ts'
 import {
   FusePoolDirectory,
   FusePoolDirectory__poolsResult,
@@ -59,11 +59,17 @@ export function updatePool(
 
   pool.name = contract._name
   pool.comptroller = contract._address
-  pool.creator = contract.try_admin()
-  pool.closeFactor = contract.try_closeFactorMantissa()
-  pool.liquidationIncentive = contract.try_liquidationIncentiveMantissa()
-  pool.priceOracle = contract.try_oracle()
-  pool.maxAssets = contract.try_maxAssets()
+  let admin = contract.try_admin()
+  let closeFactor = contract.try_closeFactorMantissa()
+  let liquidationIncentive = contract.try_liquidationIncentiveMantissa()
+  let oracle = contract.try_oracle()
+  let maxAssets = contract.try_maxAssets()
+
+  pool.creator = admin.reverted ? new Bytes(0) : admin.value
+  pool.closeFactor = closeFactor.reverted ? new BigInt(0) : closeFactor.value
+  pool.liquidationIncentive = liquidationIncentive.reverted ? new BigInt(0) : liquidationIncentive.value
+  pool.priceOracle = oracle.reverted ? new Bytes(0) : oracle.value
+  pool.maxAssets = maxAssets.reverted ? new BigInt(0) : maxAssets.value
 
   pool.markets = getAllMarketsInPool(contract)
 
